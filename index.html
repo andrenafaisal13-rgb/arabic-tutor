@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Andrena Faisal — Arabic Language Tutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --surface: #f0ebe0;
+      --card: #ffffff;
+      --accent: #c4783a;
+      --accent2: #2d6a4f;
+      --text: #1a1208;
+      --muted: #7a6a54;
+      --border: #e0d5c5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    header {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 80px 80px;
+      gap: 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #faf7f2 60%, #f0e6d3);
+    }
+
+    header::before {
+      content: 'ع';
+      position: absolute;
+      font-family: 'Amiri', serif;
+      font-size: 600px;
+      color: rgba(196,120,58,0.05);
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-left { position: relative; z-index: 1; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(196,120,58,0.1);
+      border: 1px solid rgba(196,120,58,0.3);
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 40px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .badge::before { content: '🌙'; font-size: 14px; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 6vw, 80px);
+      font-weight: 600;
+      line-height: 1.1;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    h1 span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .arabic-headline {
+      font-family: 'Amiri', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      color: var(--accent);
+      margin-top: 12px;
+      direction: rtl;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .subtitle {
+      margin-top: 24px;
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 480px;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
+
+    .hero-btns {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-primary:hover { background: #b06a2e; transform: translateY(-2px); }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 14px 32px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Decorative Arabic card */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    .arabic-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      max-width: 360px;
+      width: 100%;
+    }
+
+    .arabic-letters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .letter-box {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 16px 8px;
+      font-family: 'Amiri', serif;
+      font-size: 28px;
+      color: var(--accent);
+      transition: background 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .letter-box:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .letter-name {
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .card-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION BASE */
+    section { padding: 100px 80px; border-top: 1px solid var(--border); }
+
+    .section-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 48px;
+    }
+
+    /* WHAT YOU LEARN */
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .learn-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .learn-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .learn-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .learn-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .learn-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 18px;
+      color: var(--accent);
+      direction: rtl;
+      margin-bottom: 10px;
+    }
+
+    .learn-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* PACKAGES */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .package {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .package:hover { border-color: var(--accent); }
+
+    .package.featured {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .package.featured .pkg-desc,
+    .package.featured .pkg-item { color: rgba(255,255,255,0.8); }
+    .package.featured .pkg-price { color: #fff; }
+
+    .pkg-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+
+    .pkg-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pkg-price {
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .pkg-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .pkg-items { list-style: none; }
+
+    .pkg-item {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pkg-item::before { content: '✓'; color: var(--accent2); font-weight: 700; }
+    .package.featured .pkg-item::before { color: #fff; }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+    }
+
+    .stars { color: var(--accent); font-size: 16px; margin-bottom: 16px; }
+
+    .testimonial p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: var(--surface);
+    }
+
+    .reviewer-name { font-size: 14px; font-weight: 500; }
+    .reviewer-country { font-size: 12px; color: var(--muted); }
+
+    /* FAQ */
+    .faq-list { max-width: 700px; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+
+    .faq-q {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, #2d1a0a, #1a0d0d);
+      color: #fff;
+      border-radius: 16px;
+      padding: 80px;
+      margin: 0 80px 80px;
+    }
+
+    .cta-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 48px;
+      color: var(--accent);
+      direction: rtl;
+      margin-bottom: 16px;
+    }
+
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      font-size: 17px;
+      margin-bottom: 36px;
+    }
+
+    footer {
+      padding: 30px 80px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      header { grid-template-columns: 1fr; padding: 60px 24px; }
+      .hero-right { display: none; }
+      section { padding: 60px 24px; }
+      .learn-grid, .packages-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-section { margin: 0 24px 60px; padding: 48px 24px; }
+      footer { padding: 24px; flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="hero-left">
+      <span class="badge">Arabic Language Tutor</span>
+      <h1>Learn Arabic<br/>the <span>natural way</span></h1>
+      <div class="arabic-headline">تعلّم العربية معي</div>
+      <p class="subtitle">Hi, I'm Andrena — a native Arabic speaker from Jordan. I teach Arabic to non-native speakers in a simple, fun, and structured way.</p>
+      <div class="hero-btns">
+        <a href="https://www.fiverr.com/andrena_faisal" class="btn-primary" target="_blank">Book a Lesson</a>
+        <a href="#packages" class="btn-secondary">View Packages</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="arabic-card">
+        <div class="arabic-letters">
+          <div class="letter-box">أ<div class="letter-name">Alef</div></div>
+          <div class="letter-box">ب<div class="letter-name">Ba</div></div>
+          <div class="letter-box">ت<div class="letter-name">Ta</div></div>
+          <div class="letter-box">ث<div class="letter-name">Tha</div></div>
+          <div class="letter-box">ج<div class="letter-name">Jim</div></div>
+          <div class="letter-box">ح<div class="letter-name">Ha</div></div>
+          <div class="letter-box">خ<div class="letter-name">Kha</div></div>
+          <div class="letter-box">د<div class="letter-name">Dal</div></div>
+        </div>
+        <div class="card-label">28 Arabic Letters · Full Alphabet</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <p class="section-tag">Curriculum</p>
+    <h2 class="section-title">What you'll learn</h2>
+    <div class="learn-grid">
+      <div class="learn-card">
+        <div class="learn-icon">🔤</div>
+        <h3>Arabic Alphabet</h3>
+        <div class="learn-arabic">الحروف الأبجدية</div>
+        <p>Learn all 28 letters, their shapes, sounds, and how they connect in words. The perfect starting point for beginners.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-icon">💬</div>
+        <h3>Daily Conversations</h3>
+        <div class="learn-arabic">المحادثة اليومية</div>
+        <p>Greetings, shopping, directions, and everyday phrases. Start speaking Arabic from your very first lesson.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-icon">📖</div>
+        <h3>Reading & Writing</h3>
+        <div class="learn-arabic">القراءة والكتابة</div>
+        <p>Practice reading short texts and writing Arabic script with proper form and direction.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-icon">🕌</div>
+        <h3>Quranic Arabic</h3>
+        <div class="learn-arabic">اللغة العربية القرآنية</div>
+        <p>Introduction to Classical Arabic for those who want to understand the Quran and Islamic texts.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-icon">🗣️</div>
+        <h3>Pronunciation</h3>
+        <div class="learn-arabic">النطق الصحيح</div>
+        <p>Master the unique Arabic sounds including ع، خ، غ، ح with exercises designed for non-native speakers.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-icon">📝</div>
+        <h3>Basic Grammar</h3>
+        <div class="learn-arabic">القواعد الأساسية</div>
+        <p>Understand how Arabic sentences are structured, gender rules, and basic verb conjugation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages">
+    <p class="section-tag">Pricing</p>
+    <h2 class="section-title">Choose your package</h2>
+    <div class="packages-grid">
+      <div class="package">
+        <div class="pkg-name">Starter</div>
+        <div class="pkg-price">$10</div>
+        <div class="pkg-desc">Perfect for beginners who want to try Arabic lessons for the first time.</div>
+        <ul class="pkg-items">
+          <li class="pkg-item">1 lesson (45 min)</li>
+          <li class="pkg-item">Alphabet basics</li>
+          <li class="pkg-item">Basic greetings</li>
+          <li class="pkg-item">PDF summary notes</li>
+          <li class="pkg-item">1 revision</li>
+        </ul>
+      </div>
+      <div class="package featured">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-name">Standard</div>
+        <div class="pkg-price">$25</div>
+        <div class="pkg-desc">3 sessions to build a solid foundation in Arabic language.</div>
+        <ul class="pkg-items">
+          <li class="pkg-item">3 lessons (45 min each)</li>
+          <li class="pkg-item">Full alphabet + pronunciation</li>
+          <li class="pkg-item">Daily conversations</li>
+          <li class="pkg-item">Custom study plan</li>
+          <li class="pkg-item">Practice exercises</li>
+          <li class="pkg-item">Unlimited revisions</li>
+        </ul>
+      </div>
+      <div class="package">
+        <div class="pkg-name">Premium</div>
+        <div class="pkg-price">$50</div>
+        <div class="pkg-desc">Intensive course for serious learners who want real progress fast.</div>
+        <ul class="pkg-items">
+          <li class="pkg-item">7 lessons (45 min each)</li>
+          <li class="pkg-item">Reading & writing practice</li>
+          <li class="pkg-item">Grammar foundations</li>
+          <li class="pkg-item">Quranic Arabic intro</li>
+          <li class="pkg-item">Progress tracking</li>
+          <li class="pkg-item">Priority support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-tag">Reviews</p>
+    <h2 class="section-title">What students say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Andrena is an amazing teacher! She explained the alphabet in a way that finally made sense to me. I can now read basic Arabic words."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">🇺🇸</div>
+          <div>
+            <div class="reviewer-name">Sarah M.</div>
+            <div class="reviewer-country">United States</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Very patient and clear. She adapted the lessons to my level and pace. I highly recommend her for anyone starting Arabic."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">🇬🇧</div>
+          <div>
+            <div class="reviewer-name">James T.</div>
+            <div class="reviewer-country">United Kingdom</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"I wanted to learn Arabic for Quran. Andrena was so helpful and understanding. Best tutor I've found online!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">🇲🇾</div>
+          <div>
+            <div class="reviewer-name">Aisha K.</div>
+            <div class="reviewer-country">Malaysia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"شكراً جزيلاً! Great experience. She speaks both English and Arabic fluently which made communication super easy."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">🇩🇪</div>
+          <div>
+            <div class="reviewer-name">Lukas B.</div>
+            <div class="reviewer-country">Germany</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-tag">FAQ</p>
+    <h2 class="section-title">Common questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Do I need any prior knowledge of Arabic? <span>+</span></div>
+        <div class="faq-a">No! I teach complete beginners. We start from zero — the alphabet, sounds, and basic words.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What platform do we use for lessons? <span>+</span></div>
+        <div class="faq-a">Lessons are conducted via Zoom or Google Meet. I'll send you the link after booking.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can you teach Modern Standard Arabic AND Jordanian dialect? <span>+</span></div>
+        <div class="faq-a">Yes! I can teach both Modern Standard Arabic (MSA) used in media and formal settings, and the Jordanian/Levantine dialect for everyday communication.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long until I can hold a basic conversation? <span>+</span></div>
+        <div class="faq-a">With the Standard package (3 lessons), most students can introduce themselves and handle simple conversations. Progress depends on practice outside lessons too!</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section">
+    <div class="cta-arabic">!يلا نبدأ</div>
+    <h2>Start your Arabic journey today</h2>
+    <p>Book your first lesson on Fiverr — satisfaction guaranteed or your money back.</p>
+    <a href="https://www.fiverr.com/andrena_faisal" class="btn-primary" target="_blank" style="font-size:15px;padding:16px 40px;">Book on Fiverr →</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Andrena Faisal — Arabic Language Tutor</span>
+    <span>Jordan 🇯🇴 · Speaks Arabic & English</span>
+  </footer>
+
+</body>
+</html>
